@@ -6,19 +6,23 @@ on:
       - main
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - name: Use Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
       - name: Install dependencies
         run: npm install
+
+      - name: Run app check
+        run: npm run start --if-present
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
