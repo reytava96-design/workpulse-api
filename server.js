@@ -1,14 +1,12 @@
 const express = require("express");
 const app = express();
 
-app.use(express.json());
-
 app.get("/", (req, res) => {
     res.send("WorkPulse API rodando 🚀");
 });
 
 app.get("/products", (req, res) => {
-    res.json([]);
+    res.json([{ id: 1, name: "Produto teste" }]);
 });
 
 const port = process.env.PORT || 3000;
